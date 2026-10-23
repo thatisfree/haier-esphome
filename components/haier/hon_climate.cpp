@@ -843,7 +843,8 @@ haier_protocol::HandlerError HonClimate::process_status_message_(const uint8_t *
                              encode_uint16(bd_packet->compressor_current[0], bd_packet->compressor_current[1]) / 10.0);
     this->update_sub_sensor_(
         SubSensorType::EXPANSION_VALVE_OPEN_DEGREE,
-        encode_uint16(bd_packet->expansion_valve_open_degree[0], bd_packet->expansion_valve_open_degree[1]) / 4095.0);
+        encode_uint16(bd_packet->expansion_valve_open_degree[0], bd_packet->expansion_valve_open_degree[1]) / 4095.0 *
+            100.0);
 #endif  // USE_SENSOR
 #ifdef USE_BINARY_SENSOR
     this->update_sub_binary_sensor_(SubBinarySensorType::OUTDOOR_FAN_STATUS, bd_packet->outdoor_fan_status);
